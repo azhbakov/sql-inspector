@@ -9,6 +9,7 @@ import org.antlr.v4.runtime.tree.xpath.XPath;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +26,12 @@ public class Inspector {
                 "return @RetVal " +
                 "IF a>b insert abc (a,b,c)values ('a','b','c')";
 
-        inspect(query);
+        //inspect(query);
+        ArrayList<CodeSmell> codeSmells = new ArrayList<CodeSmell>();
+        IfDetector.detect(query, codeSmells);
+        for (CodeSmell c : codeSmells) {
+            c.print();
+        }
 
     }
 
