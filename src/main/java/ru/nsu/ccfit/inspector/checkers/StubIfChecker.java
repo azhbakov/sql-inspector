@@ -26,7 +26,7 @@ public class StubIfChecker implements Checker {
         String xpath = "//cfl_statement";
         String treePattern = "<IF> <search_condition> <sql_clause>";
 
-        ParseTreePattern p = parser.compileParseTreePattern(treePattern, TsqlParser.RULE_cfl_statement);
+        ParseTreePattern p = parser.compileParseTreePattern(treePattern,   TsqlParser.RULE_cfl_statement);
         List<ParseTreeMatch> matches = p.findAll(tree, xpath);
 
         for (ParseTreeMatch match : matches) {
