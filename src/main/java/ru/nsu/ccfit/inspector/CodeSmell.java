@@ -16,7 +16,7 @@ public class CodeSmell {
     }
 
     public void print() {
-        //System.out.println("[CodeSmell " + type +  "  in line " + line + "]: " + message);
         System.out.println("(" + line + "; " + symbol + ") " + type + ": " + message);
+        //System.out.println("[CodeSmell " + type +  "  in line " + line + "]: " + message);
     }
 }
