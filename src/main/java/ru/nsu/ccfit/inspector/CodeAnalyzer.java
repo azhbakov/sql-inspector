@@ -4,6 +4,7 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import ru.nsu.ccfit.inspector.inspectors.Inspector;
+import ru.nsu.ccfit.inspector.inspectors.SelectWhereInspector;
 import ru.nsu.ccfit.inspector.inspectors.StubInspector;
 
 import java.io.IOException;
@@ -37,6 +38,7 @@ public class CodeAnalyzer {
 
         ArrayList<Inspector> inspectors = new ArrayList();
         inspectors.add(new StubInspector(parser, tree));
+        inspectors.add(new SelectWhereInspector(parser, tree));
 
         codeSmells = new ArrayList<CodeSmell>();
 
