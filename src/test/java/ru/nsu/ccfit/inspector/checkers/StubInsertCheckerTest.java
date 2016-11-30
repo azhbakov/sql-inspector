@@ -17,9 +17,9 @@ import static org.junit.Assert.*;
 /**
  * Created by marting422 on 10.11.16.
  */
-public class StubIfCheckerTest {
+public class StubInsertCheckerTest {
     @Test
-    public void checkIf() throws Exception {
+    public void checkInsert() throws Exception {
         String query = "create procedure Audit_MassInsert as declare @RetVal int " +
                 "IF a>b begin insert abc (a,b,c)values ('a','b','c') end " +
                 "return @RetVal " +
