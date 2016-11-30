@@ -1,0 +1,2 @@
+# sql-inspector
+readme
