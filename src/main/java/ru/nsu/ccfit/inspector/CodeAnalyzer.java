@@ -16,7 +16,13 @@ import java.util.List;
  */
 public class CodeAnalyzer {
 
+    ArrayList<Inspector> inspectors;
     private List<CodeSmell> codeSmells;
+
+    public CodeAnalyzer (ArrayList<Inspector> inspectors) {
+        this.inspectors = inspectors;
+    }
+
     public List GetCodeSmells () { // for test
         return codeSmells;
     }
@@ -38,12 +44,10 @@ public class CodeAnalyzer {
         parser.setBuildParseTree(true);
         ParseTree tree = parser.tsql_file();
 
-        ArrayList<Inspector> inspectors = new ArrayList();
-        inspectors.add(new StubInspector(parser, tree));
-
         codeSmells = new ArrayList<CodeSmell>();
 
         for (Inspector i : inspectors) {
+            i.initInspector(parser, tree);
             i.inspect(codeSmells);
         }
 

@@ -1,8 +1,11 @@
 import org.junit.Test;
 import ru.nsu.ccfit.inspector.CodeAnalyzer;
 import ru.nsu.ccfit.inspector.CodeSmell;
+import ru.nsu.ccfit.inspector.inspectors.Inspector;
+import ru.nsu.ccfit.inspector.inspectors.StubInspector;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -18,7 +21,11 @@ public class CodeAnalyzerTest {
                 "IF a>b begin insert abc (a,b,c)values ('a','b','c') end " +
                 "return @RetVal " +
                 "IF a>b insert abc (a,b,c)values ('a','b','c')";
-        CodeAnalyzer codeAnalyzer = new CodeAnalyzer();
+
+        ArrayList<Inspector> inspectors = new ArrayList<>();
+        inspectors.add(new StubInspector());
+
+        CodeAnalyzer codeAnalyzer = new CodeAnalyzer(inspectors);
         codeAnalyzer.analyze(query);
 
         List<CodeSmell> codeSmells = codeAnalyzer.GetCodeSmells();

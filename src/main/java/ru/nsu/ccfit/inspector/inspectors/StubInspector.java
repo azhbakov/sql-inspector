@@ -12,16 +12,22 @@ import java.util.List;
 /**
  * Created by Mark on 15.11.2016.
  */
-public class StubInspector implements Inspector {
+public class StubInspector extends Inspector {
     private List<Checker> checkers;
 
-    public StubInspector(Parser parser, ParseTree tree) {
-        checkers = new ArrayList<Checker>();
+    public StubInspector () {
+        checkers = new ArrayList<>();
+    }
+
+    @Override
+    public void initInspector (Parser parser, ParseTree tree) {
+        super.initInspector(parser, tree);
         checkers.add(new StubIfChecker(parser, tree));
     }
 
     @Override
-    public void inspect(List<CodeSmell> codeSmells) {
+    public void inspect(List<CodeSmell> codeSmells) throws IllegalStateException {
+        super.inspect(codeSmells);
         for (Checker checker : checkers) {
             checker.check(codeSmells);
         }
