@@ -19,13 +19,13 @@ import static org.junit.Assert.*;
  */
 public class StubIfCheckerTest {
     @Test
-    public void checkIf() throws Exception {
+    public void checkIf() throws IOException {
         String query = "create procedure Audit_MassInsert as declare @RetVal int " +
                 "IF a>b begin insert abc (a,b,c)values ('a','b','c') end " +
                 "return @RetVal " +
                 "IF a>b insert abc (a,b,c)values ('a','b','c')";
 
-        ANTLRInputStream input = new ANTLRInputStream(new StringReader(query));
+        ANTLRInputStream input   = new ANTLRInputStream(new StringReader(query));
 
         TsqlLexer lexer = new ru.nsu.ccfit.inspector.TsqlLexer(input);
 

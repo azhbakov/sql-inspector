@@ -13,6 +13,14 @@ import java.util.List;
  * Created by Me on 10/20/2016.
  */
 public class CodeAnalyzer {
+
+    private CodeAnalyzer()
+    {
+
+    }
+    /*
+        @param args - cmd arguments
+    */
     public static void main(String[] args) throws IOException {
         String query = "create procedure Audit_MassInsert as declare @RetVal int " +
                 "IF a>b begin insert abc (a,b,c)values ('a','b','c') end " +
@@ -26,6 +34,11 @@ public class CodeAnalyzer {
         }
     }
 
+    /*
+    * @param query - input string
+    *
+    * @return List<CodeSmell>
+    * */
     public static List<CodeSmell> analyze(String query) throws IOException {
         ANTLRInputStream input = new ANTLRInputStream(new StringReader(query));
 
@@ -39,10 +52,9 @@ public class CodeAnalyzer {
 
         InspectorFactory factory = new InspectorFactoryImpl(parser, tree);
 
-        List<CodeSmell> codeSmells = new ArrayList<CodeSmell>();
+        List<CodeSmell> codeSmells = new ArrayList<>();
 
         factory.createStubInspector().inspect(codeSmells);
-        //TODO: create more inspectors
 
         return codeSmells;
     }

@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  */
 public class StubInsertCheckerTest {
     @Test
-    public void checkInsert() throws Exception {
+    public void checkInsert() throws IOException {
         String query = "create procedure Audit_MassInsert as declare @RetVal int " +
                 "IF a>b begin insert abc (a,b,c)values ('a','b','c') end " +
                 "return @RetVal " +
