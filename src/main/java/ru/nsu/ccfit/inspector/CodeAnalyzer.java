@@ -16,7 +16,10 @@ import java.util.List;
  */
 public class CodeAnalyzer {
 
-    List<CodeSmell> codeSmells;
+    private List<CodeSmell> codeSmells;
+    public List GetCodeSmells () { // for test
+        return codeSmells;
+    }
 
     public void printCodeSmells() {
         for (CodeSmell codeSmell : codeSmells) {

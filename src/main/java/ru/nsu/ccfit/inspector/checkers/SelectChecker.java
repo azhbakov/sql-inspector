@@ -10,25 +10,25 @@ import ru.nsu.ccfit.inspector.TsqlParser;
 import java.util.List;
 
 /**
- * Created by marting422 on 10.11.16.
+ * Created by Martin on 15.12.2016.
  */
-public class StubIfChecker extends Checker {
+public class SelectChecker extends Checker {
 
-    public StubIfChecker(Parser parser, ParseTree tree) {
+    public SelectChecker(Parser parser, ParseTree tree) {
         super(parser, tree);
     }
 
     @Override
     public void check(List<CodeSmell> codeSmells) {
-        String xpath = "//cfl_statement";
-        String treePattern = "<IF> <search_condition> <sql_clause>";
+        String xpath = "//dml_clause";
+        String treePattern = "<select_statement>";
 
-        ParseTreePattern p = parser.compileParseTreePattern(treePattern,   TsqlParser.RULE_cfl_statement);
+        ParseTreePattern p = parser.compileParseTreePattern(treePattern, TsqlParser.RULE_select_statement);
         List<ParseTreeMatch> matches = p.findAll(tree, xpath);
 
         for (ParseTreeMatch match : matches) {
             //codeSmells.add(new CodeSmell(0, 0, "IF", match.getTree().getText()));
-            codeSmells.add(new CodeSmell(0, 0, "IF", "Using IF is considered bad by this stub."));
+            codeSmells.add(new CodeSmell(0, 0, "SELECT", "Using SELECT is considered bad by this stub."));
             //System.out.println(match.getTree().getText());
         }
     }
