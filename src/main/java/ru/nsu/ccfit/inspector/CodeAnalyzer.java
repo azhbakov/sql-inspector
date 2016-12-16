@@ -33,7 +33,9 @@ public class CodeAnalyzer {
         }
     }
 
+
     public List<CodeSmell> analyze(String query) throws IOException {
+
         ANTLRInputStream input = new ANTLRInputStream(new StringReader(query));
 
         TsqlLexer lexer = new ru.nsu.ccfit.inspector.TsqlLexer(input);
@@ -44,12 +46,14 @@ public class CodeAnalyzer {
         parser.setBuildParseTree(true);
         ParseTree tree = parser.tsql_file();
 
+
         codeSmells = new ArrayList<CodeSmell>();
 
         for (Inspector i : inspectors) {
             i.initInspector(parser, tree);
             i.inspect(codeSmells);
         }
+
 
         return codeSmells;
     }
