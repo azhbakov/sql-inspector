@@ -21,4 +21,5 @@ public class InspectorFactoryImpl implements InspectorFactory {
     public Inspector createStubInspector() {
         return new StubInspector(parser, tree);
     }
+
 }

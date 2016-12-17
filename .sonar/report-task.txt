@@ -1,5 +1,5 @@
 projectKey=SQL-Inspector-analyzer
 serverUrl=http://localhost:9000
 dashboardUrl=http://localhost:9000/dashboard/index/SQL-Inspector-analyzer
-ceTaskId=AVkCiMlvNBOhElmlCEns
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AVkCiMlvNBOhElmlCEns
+ceTaskId=AVkI2VPhXTfc-okf8PrW
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVkI2VPhXTfc-okf8PrW

@@ -12,21 +12,29 @@ import java.util.List;
 /**
  * Created by artem on 22.11.16.
  */
-public class InsertChecker implements Checker {
+public class StubInsertChecker implements Checker {
     private Parser parser;
     private ParseTree tree;
 
-    public InsertChecker(Parser parser, ParseTree tree) {
+    public StubInsertChecker(Parser parser, ParseTree tree) {
         this.parser = parser;
         this.tree = tree;
     }
 
     @Override
     public void check(List<CodeSmell> codeSmells) {
-        String xpath = "//cfl_statement";
-        String treePattern = "<INSERT> <search_condition> <sql_clause>";
+        String xpath = "//insert_statement";
+        String treePattern = "insert_statement" +
+                ": with_expression ?" +
+                " INSERT (TOP '(' expression ')' PERCENT?)?" +
+                " INTO? (ddl_object | rowset_function_limited)" +
+                " insert_with_table_hints?" +
+                " ('(' column_name_list ')')?" +
+                "output_clause?" +
+                "insert_statement_value" +
+                " for_clause? option_clause? ';'?";
 
-        ParseTreePattern p = parser.compileParseTreePattern(treePattern, TsqlParser.RULE_cfl_statement);
+        ParseTreePattern p = parser.compileParseTreePattern(treePattern, TsqlParser.RULE_insert_statement);
         List<ParseTreeMatch> matches = p.findAll(tree, xpath);
 
         for (ParseTreeMatch match : matches) {

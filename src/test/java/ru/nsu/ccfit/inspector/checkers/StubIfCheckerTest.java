@@ -11,6 +11,7 @@ import ru.nsu.ccfit.inspector.TsqlParser;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -24,24 +25,9 @@ public class StubIfCheckerTest {
                 "IF a>b begin insert abc (a,b,c)values ('a','b','c') end " +
                 "return @RetVal " +
                 "IF a>b insert abc (a,b,c)values ('a','b','c')";
-
-        ANTLRInputStream input   = new ANTLRInputStream(new StringReader(query));
-
-        TsqlLexer lexer = new ru.nsu.ccfit.inspector.TsqlLexer(input);
-
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        TsqlParser parser = new ru.nsu.ccfit.inspector.TsqlParser(tokens);
-
-        parser.setBuildParseTree(true);
-        ParseTree tree = parser.tsql_file();
-
-        StubIfChecker checker = new StubIfChecker(parser, tree);
-
-        ArrayList<CodeSmell> codeSmells = new ArrayList<CodeSmell>();
-        checker.check(codeSmells);
-
-        assertEquals(2, codeSmells.size());
+        TsqlParser parser = TestUtils.getParser(query);
+        ParseTree tree = TestUtils.getParserTree(parser);
+        List<CodeSmell> smellList = TestUtils.getCodeSmells(new StubIfChecker(parser, tree));
+        assertEquals(2, smellList.size());
     }
-
-
 }
