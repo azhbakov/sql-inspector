@@ -34,7 +34,7 @@ public class Main {
             }
             catch(IOException er)
             {
-                System.err.println("Something goes wrong.");
+                System.err.println("Something goes wrong...");
             }
         }
 
