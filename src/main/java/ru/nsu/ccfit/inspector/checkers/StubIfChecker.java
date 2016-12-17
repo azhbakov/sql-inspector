@@ -1,3 +1,4 @@
+
 package ru.nsu.ccfit.inspector.checkers;
 
 import org.antlr.v4.runtime.Parser;
@@ -12,13 +13,10 @@ import java.util.List;
 /**
  * Created by marting422 on 10.11.16.
  */
-public class StubIfChecker implements Checker {
-    private Parser parser;
-    private ParseTree tree;
+public class StubIfChecker extends Checker {
 
     public StubIfChecker(Parser parser, ParseTree tree) {
-        this.parser = parser;
-        this.tree = tree;
+        super(parser, tree);
     }
 
     @Override

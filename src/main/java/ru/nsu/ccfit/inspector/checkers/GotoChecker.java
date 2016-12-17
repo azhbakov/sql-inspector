@@ -13,12 +13,11 @@ import java.util.List;
 /**
  * Created by artem on 16.12.16.
  */
-public class GotoChecker implements Checker {
+public class GotoChecker extends Checker {
 
     public GotoChecker(Parser parser, ParseTree parserTree)
     {
-        this.parser = parser;
-        this.parserTree = parserTree;
+        super(parser,parserTree);
     }
 
     @Override
@@ -27,7 +26,7 @@ public class GotoChecker implements Checker {
         String treePattern = "<GOTO> <id>";
 
         ParseTreePattern p = parser.compileParseTreePattern(treePattern,   TsqlParser.RULE_cfl_statement);
-        List<ParseTreeMatch> matches = p.findAll(parserTree, xpath);
+        List<ParseTreeMatch> matches = p.findAll(tree, xpath);
 
         for(ParseTreeMatch match : matches)
         {
@@ -35,6 +34,4 @@ public class GotoChecker implements Checker {
         }
     }
 
-    private Parser parser;
-    private ParseTree parserTree;
 }

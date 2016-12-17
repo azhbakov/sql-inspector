@@ -10,12 +10,19 @@ import java.util.List;
 /**
  * Created by artem on 16.12.16.
  */
-public class GotoInspector implements Inspector {
+public class GotoInspector extends Inspector {
 
     public GotoInspector(Parser parser, ParseTree tree)
     {
         checker = new GotoChecker(parser,tree);
     }
+
+    @Override
+    public void initInspector (Parser parser, ParseTree tree) {
+        super.initInspector(parser,tree);
+        checker = new GotoChecker(parser,tree);
+    }
+
     @Override
     public void inspect(List<CodeSmell> codeSmells) {
         checker.check(codeSmells);
