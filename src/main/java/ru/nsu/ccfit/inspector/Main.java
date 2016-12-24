@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.inspector;
+ package ru.nsu.ccfit.inspector;
 
 import ru.nsu.ccfit.inspector.inspectors.Inspector;
 import ru.nsu.ccfit.inspector.inspectors.StubInspector;
