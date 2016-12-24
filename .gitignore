@@ -20,5 +20,3 @@ buildNumber.properties
 .idea/
 *.iml
 /out/
-
-# Test change
